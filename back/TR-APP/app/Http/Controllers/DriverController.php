@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Driver;
 
+use App\Models\Driver;
 use Illuminate\Http\Request;
 
 class DriverController extends Controller
@@ -14,7 +14,18 @@ class DriverController extends Controller
      */
     public function index()
     {
+        //
         return Driver::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -25,6 +36,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
@@ -39,23 +51,37 @@ class DriverController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
+        //
         return Driver::find($id);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Driver  $driver
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Driver $driver)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        //
         $driver = Driver::find($id);
         $driver->update($request->all());
         return $driver;
@@ -64,26 +90,21 @@ class DriverController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+        //
         return Driver::destroy($id);
-        //or
-        /* $driver = Driver::find($id);
+        /*$driver = Driver::find($id);
         $driver->delete();
-        return $driver; */
+        return $driver;*/
     }
-    /**
-     * search for  the a nom
-     *
-     * @param  str  $nom
-     * @return \Illuminate\Http\Response
-     */
-    public function search($nom)
+    public function search( $nom)
     {
-        return Driver::where('nom', 'like', '%' . $nom . '%')->get();
-       
+        //
+        $driver = Driver::where('nom', 'like', '%' . $nom . '%')->get();
+        return $driver;
     }
 }
